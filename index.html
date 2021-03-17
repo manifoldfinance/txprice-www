@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="/static/img/favicon.ico"/>
+
+  
+  <title>TxPrice</title>
+  
+  
+  <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-1.8.0.min.css" />
+  <link href="/static/css/local.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+
+
+  <!-- Analytics -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+//google.charts.load('current', { packages: ['corechart', 'line']
+google.charts.load('current', {'packages':['corechart', 'line']});
+
+
+google.charts.setOnLoadCallback(drawLineColors);
+
+function drawLineColors() {
+  const data = new google.visualization.DataTable();
+
+  data.addColumn('datetime', 'Date');
+  data.addColumn('number', 'Fastest');
+  data.addColumn('number', 'Fast');
+  data.addColumn('number', 'Average');
+  data.addColumn('number', 'Safe Low');
+
+  const options = {
+      hAxis: {
+          title: 'Date'
+      },
+      vAxis: {
+          title: 'Gas price (Gwei)'
+      },
+  };
+      $.getJSON('https://gistcdn.githack.com/sambacha/ecc1fba5032c4faac9e6627c3b201616/raw/84ea888a449e6f767c320dc1e25da540ebc7ed41/gasData.json', (res) => {
+      const rows = res['data'].map(x => [new Date(x['date']), x['fastest'], x['fast'], x['average'], x['safeLow']]);
+      data.addRows(rows);
+      const chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+  });
+}
+  
+</script>
+  
+</head>
+
+<body role="document">
+  <header id="navigation" class="p-navigation">
+  <div class="row">
+    <div class="p-navigation__banner">
+      <div class="p-navigation__logo">
+        <a class="p-navigation__link" href="/">
+          Protocol Delivery Network
+        </a>
+      </div>
+      
+      <a href="#navigation" class="p-navigation__toggle--open" title="menu">Menu</a>
+      <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Close menu</a>
+      
+    </div>
+
+    
+      <nav class="p-navigation__nav" role="menubar">
+        <span class="u-off-screen">
+          <a href="#main-content">Jump to main content</a>
+        </span>
+        <ul class="p-navigation__links" role="menu">
+          
+            
+              <li class="p-navigation__link is-selected">
+                <a href="#">Home</a>
+              </li>
+            
+            
+              <li class="p-navigation__link p-dropdown__toggle " id="Ethereum">
+                <a a href="#" class="p-dropdown__toggle-link">Ethereum</a>
+                <ul class="p-navigation__sub-links p-dropdown" id="Ethereum-menu">
+                  
+                    
+                      
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">EIP1559</a>
+                        </li>
+
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">Layer2</a>
+                        </li>
+
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">Best Practices</a>
+                        </li>
+
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">API</a>
+                        </li>
+
+                        <li class="p-dropdown__toggle" id="Networks-supported">
+                          <a class="p-navigation__sub-link p-dropdown__toggle-link" href="#">Networks</a>
+                          <ul class="p-navigation__sub-links p-dropdown is-split" id="Networks-supported-menu">
+                            
+                              <li>
+                                <a class="p-navigation__sub-link p-dropdown__link" href="#">Ethereum Mainnet</a>
+                              </li>
+                            
+                              <li>
+                                <a class="p-navigation__sub-link p-dropdown__link" href="#">xDai</a>
+                              </li>
+                            
+                              <li>
+                                <a class="p-navigation__sub-link p-dropdown__link" href="#">TBA</a>
+                              </li>
+                            
+                          </ul>
+                        </li>
+
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">Contribute</a>
+                        </li>
+
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">Downloads</a>
+                        </li>
+                    <!-- SEPARATOR / HEADING -->
+                      <li>
+                        <hr class="u-no-margin--bottom">
+                        
+                          <h3 class="p-heading--five p-navigation__sub-link u-no-margin--bottom">External resources</h3>
+                        
+                      </li>
+                    
+                  
+                    
+                      
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">Articles</a>
+                        </li>
+
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">Mailing lists</a>
+                        </li>
+
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">GitHub</a>
+                        </li>
+
+                        <li>
+                          <a a href="#"  class="p-navigation__sub-link p-dropdown__link">Status Page</a>
+                        </li>
+                      
+                    
+                  
+                </ul>
+              </li>
+            
+          
+        
+      </ul>
+      <ul class="p-navigation__links p-language-switcher" role="menu">
+        
+          <li class="p-navigation__link p-dropdown__toggle">
+            <a a href="#" class="p-dropdown__toggle-link">Language</a>
+            <ul class="p-navigation__sub-links p-dropdown" role="menu" id="languages">
+              
+                
+                  <li><a a href="#" class="p-navigation__sub-link p-dropdown__link is-active">English</a></li>
+        
+                    <li><a a href="#"  class="p-navigation__sub-link p-dropdown__link">Français</a></li>
+                  
+        
+                    <li><a a href="#"  class="p-navigation__sub-link p-dropdown__link">Italiano</a></li>
+                  
+        
+                    <li><a a href="#"  class="p-navigation__sub-link p-dropdown__link">Português Brasileiro</a></li>
+                  
+        
+                    <li><a a href="#"  class="p-navigation__sub-link p-dropdown__link">日本語</a></li>
+                  
+        
+                    <li><a a href="#"  class="p-navigation__sub-link p-dropdown__link">한국어</a></li>
+                  
+        
+                    <li><a a href="#"  class="p-navigation__sub-link p-dropdown__link">Русский</a></li>
+                  
+                
+              
+            </ul>
+          </li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <section class="p-strip--light is-x-shallow">
+    <div class="row">
+      <ul class="p-breadcrumbs u-no-margin--bottom">
+        
+          
+          <li class="p-breadcrumbs__item">Home</li>
+          
+        
+      </ul>
+    </div>
+  </section>
+
+  <div class="wrapper u-no-margin--top">
+    <div class="inner-wrapper" id="main-content">
+      
+    
+<div class="p-strip">
+  <div class="row">
+    <div class="col-8 suffix-1">
+      <h1>Infrastructure for <br>
+           decentralized Protocols.</h1>
+      <ul>Mempool Pricing </ul>
+      <ul>Relay Pricing</ul>
+      <ul>Batch Pricing</ul>
+      <ul>MEV Pricing</ul>
+    </div>
+    <div class="col-4">
+      <img src="/static/img/defiglobe.png" alt="" />
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ethereum Transaction Index</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card col-8">
+      <h3>Gwei Pricing Index</h3>
+      <div id="chart_div"></div>
+      </p>
+
+      <p></p>
+      <p><a class="p-button" a href="#" role="button">Learn more</a></p>
+    </div>
+
+    <div class="p-card col-4">
+        <h3>TxPrice</h3>
+        <p>
+        <ul>Base Fee</ul>
+        <ul>Legacy Fee</ul>
+        <ul>MEV Fee</ul>
+        <ul>Network Fee</ul>
+        </p>
+  
+        <p>
+          <a class="p-button--positive" a href="#" role="button">Try it</a>
+          <a class="p-button" a href="#" role="button">Learn more</a>
+        </p>
+      </div>
+  </div>
+
+
+
+</div>
+
+
+
+    </div>
+  </div>
+
+  <footer class="p-footer">
+  <div class="row">
+    <p>Project sponsored by <a href="https://www.manifoldfinance.com">CommodityStream Ltd.</a></p>
+    <nav class="p-footer__nav">
+      <ul class="p-inline-list--middot u-no-margin--bottom">
+        <li class="p-inline-list__item">
+          <a class="p-link--soft" href="#">Improve this website</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a class="p-link--soft" href="#">Back to top</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a class="p-link--soft" href="#">Content under Creative Commons CC BY NC SA</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/bootstrap-rating.min.js"></script>
+  <script src="/static/js/navigation.js"></script>
+</div>
+</body>
+</html>
