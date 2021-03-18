@@ -2,10 +2,10 @@
   "name": "txprice-www",
   "version": "1.0.0",
   "private": true,
-  "description": "",
-  "main": "script.js",
+  "description": "txprice webpage",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
     "build": "npx parcel build index.html",
     "deploy": "netlify deploy --prod"
   },
