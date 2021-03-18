@@ -11,12 +11,30 @@
   <title>TxPrice</title>
   
   
-  <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-1.8.0.min.css" />
+  <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-1.8.1.min.css" />
   <link href="/static/css/local.css" rel="stylesheet"/>
   <link href="/static/css/pygments.css" rel="stylesheet"/>
 
+  <!-- MetaData -->
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Analytics -->
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. 
+    
+    
+      <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
+   
+   
+    END Analytics -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <!--Load the AJAX API-->
@@ -45,6 +63,8 @@ function drawLineColors() {
           title: 'Gas price (Gwei)'
       },
   };
+  // Temporary endpoint until production backend can be exposed to public queries
+  // Historical dataset up to 2021-03-14
       $.getJSON('https://gistcdn.githack.com/sambacha/ecc1fba5032c4faac9e6627c3b201616/raw/84ea888a449e6f767c320dc1e25da540ebc7ed41/gasData.json', (res) => {
       const rows = res['data'].map(x => [new Date(x['date']), x['fastest'], x['fast'], x['average'], x['safeLow']]);
       data.addRows(rows);
@@ -63,7 +83,7 @@ function drawLineColors() {
     <div class="p-navigation__banner">
       <div class="p-navigation__logo">
         <a class="p-navigation__link" href="/">
-          Protocol Delivery Network
+          TxPrice
         </a>
       </div>
       
@@ -84,7 +104,10 @@ function drawLineColors() {
                 <a href="#">Home</a>
               </li>
             
-            
+              <li class="p-navigation__link ">
+                <a href="https://manifoldfinance.com">Manifold Finance</a>
+              </li>
+
               <li class="p-navigation__link p-dropdown__toggle " id="Ethereum">
                 <a a href="#" class="p-dropdown__toggle-link">Ethereum</a>
                 <ul class="p-navigation__sub-links p-dropdown" id="Ethereum-menu">
@@ -223,15 +246,12 @@ function drawLineColors() {
 <div class="p-strip">
   <div class="row">
     <div class="col-8 suffix-1">
-      <h1>Infrastructure for <br>
-           decentralized Protocols.</h1>
-      <ul>Mempool Pricing </ul>
-      <ul>Relay Pricing</ul>
-      <ul>Batch Pricing</ul>
-      <ul>MEV Pricing</ul>
+      <h1>Ethereum <br>
+           Transaction Resources</h1>
+
     </div>
     <div class="col-4">
-      <img src="/static/img/defiglobe.png" alt="" />
+      <img src="/static/img/defi.png" alt="" />
     </div>
   </div>
 </div>
@@ -255,10 +275,10 @@ function drawLineColors() {
     </div>
 
     <div class="p-card col-4">
-        <h3>TxPrice</h3>
+        <h3>TxPrice Endpoint</h3>
         <p>
-        <ul>Base Fee</ul>
-        <ul>Legacy Fee</ul>
+          <ul><a href="https:/t.me/manifoldfinance"> Manifold Telegram</a> </ul>
+          <ul><a href="https:/twitter.com/foldfinance"> Manifold Twitter</a> </ul>
         <ul>MEV Fee</ul>
         <ul>Network Fee</ul>
         </p>
